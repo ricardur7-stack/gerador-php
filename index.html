@@ -1,0 +1,464 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUA OS - Professional Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Orbitron:wght@400&family=Rajdhani:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #6a11cb;
+            --bg-dark: #0a0a0c;
+            --glass: rgba(15, 15, 20, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Estética refinada: Fontes mais finas e sem negritos pesados */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: radial-gradient(circle at center, #111118 0%, #050505 100%) !important;
+            color: #d1d5db;
+            overflow-x: hidden;
+            font-weight: 300; /* Fonte mais fina por padrão */
+        }
+
+        h1, h2, h3, .font-orbitron { 
+            font-family: 'Orbitron', sans-serif; 
+            letter-spacing: 3px; 
+            font-weight: 400 !important; /* Removido Bold */
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+        }
+
+        /* Inputs Modernos e Flat */
+        input, select {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid var(--border) !important;
+            color: #fff !important;
+            font-weight: 300;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.07) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.1) !important;
+        }
+
+        /* Botões Elegantes */
+        .btn-neon-primary {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%) !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-neon-primary:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .content-hidden { display: none; }
+
+        .tab-button {
+            flex: 1;
+            padding: 1rem 0;
+            text-align: center;
+            font-weight: 400;
+            color: #666;
+            border-bottom: 1px solid #222;
+            transition: all 0.3s;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom: 1px solid var(--primary);
+            background: linear-gradient(to top, rgba(0, 210, 255, 0.05), transparent);
+        }
+
+        /* Scanline sutil */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
+            z-index: 10000;
+            pointer-events: none;
+            background-size: 100% 2px, 2px 100%;
+            opacity: 0.3;
+        }
+
+        .text-indigo-700 { color: var(--primary) !important; font-weight: 400 !important; }
+        .bg-indigo-50, .bg-blue-50, .bg-purple-50 { background: rgba(0,0,0,0.2) !important; border: 1px solid var(--border); }
+        
+        /* Ajuste de scroll */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-black flex items-center justify-center min-h-screen p-4">
+
+    <main id="login-section" class="glass-card p-10 w-full max-w-sm">
+        <div class="flex justify-center mb-6">
+            <div class="p-4 rounded-full bg-cyan-500/5 border border-cyan-500/20">
+                <i class="fas fa-shield-halved text-3xl text-cyan-400"></i>
+            </div>
+        </div>
+        <h1 class="text-2xl text-center mb-1 text-indigo-700 uppercase tracking-widest">EUA</h1>
+        <p class="text-center text-gray-500 mb-10 text-[11px] uppercase tracking-[3px] font-light">Security Interface</p>
+        
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label for="username" class="block text-[10px] mb-2 text-gray-500 uppercase tracking-widest">Acesso de Usuário</label>
+                <input id="username" type="text" class="w-full p-4 rounded-lg outline-none" placeholder="Username" required>
+            </div>
+            <div>
+                <label for="password" class="block text-[10px] mb-2 text-gray-500 uppercase tracking-widest">Chave Criptográfica</label>
+                <input id="password" type="password" class="w-full p-4 rounded-lg outline-none" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="w-full btn-neon-primary text-white py-4 rounded-lg transition duration-300">
+                Acessar Gerador
+            </button>
+        </form>
+        <p class="text-center text-gray-700 text-[9px] mt-8 tracking-[4px] uppercase font-light">Authorized Personnel Only</p>
+    </main>
+
+    <main id="dashboard-section" class="content-hidden glass-card p-8 w-full max-w-5xl border-t border-cyan-500/30">
+        <header class="flex flex-col sm:flex-row justify-between items-center pb-8 mb-8 border-b border-white/5">
+            <div>
+                <h1 class="text-2xl text-indigo-700 mb-1 tracking-widest">EUA</h1>
+                <p class="text-[10px] text-gray-600 font-mono uppercase tracking-widest">Node Status: <span class="text-green-500/80">Active</span></p>
+            </div>
+            <div class="flex flex-wrap items-center gap-6">
+                <div class="text-right">
+                    <span id="user-display" class="block text-white text-sm font-light tracking-wide uppercase"></span>
+                    <span id="credits-display" class="text-[10px] text-cyan-500 font-mono tracking-widest uppercase"></span>
+                </div>
+                <button id="logout-btn" class="text-gray-500 hover:text-red-400 transition-colors text-lg">
+                    <i class="fas fa-power-off"></i>
+                </button>
+            </div>
+        </header>
+
+        <nav class="flex gap-4 mb-10">
+            <button id="keys-tab-btn" class="tab-button active uppercase tracking-widest"><i class="fas fa-key mr-2 opacity-50"></i> Keys</button>
+            <button id="manage-tab-btn" class="tab-button content-hidden uppercase tracking-widest"><i class="fas fa-network-wired mr-2 opacity-50"></i> Network</button>
+        </nav>
+
+        <section id="keys-tab">
+            <div class="mb-8">
+                <h2 class="text-xs text-gray-500 uppercase tracking-[4px] mb-6">Emissão de Nova Chave</h2>
+                <form id="create-key-form" class="bg-black/20 p-8 rounded-xl border border-white/5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+                        <div>
+                            <label for="validity-days" class="block text-[10px] text-gray-500 uppercase tracking-widest mb-3">Ciclo de Vida (Dias)</label>
+                            <input type="number" id="validity-days" value="30" min="1" class="w-full p-4 rounded-lg outline-none">
+                        </div>
+                        <button type="submit" class="btn-neon-primary text-white py-4 rounded-lg shadow-xl">
+                            Gerar Key
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-xs text-gray-500 uppercase tracking-[4px] mb-6">Banco de Registros</h2>
+                <div id="keys-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+                <section id="api-docs" class="mt-12 p-8 glass-card border-none bg-black/40 content-hidden">
+                    <h3 class="text-sm text-cyan-400 mb-4 tracking-widest uppercase"><i class="fas fa-link mr-2"></i> API Endpoint</h3>
+                    <div class="bg-black/60 p-5 rounded-lg border border-white/5">
+                        <code class="text-[11px] text-gray-400 break-all font-mono">
+                            <span class="text-blue-400">PUT</span> https://chacal-d9526-default-rtdb.firebaseio.com/keys/ID.json
+                        </code>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section id="manage-tab" class="content-hidden">
+            <h2 class="text-xs text-gray-500 uppercase tracking-[4px] mb-8">Gestão de Nodes Secundários</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <div class="bg-black/20 p-8 rounded-xl border border-white/5">
+                    <h3 class="text-[10px] text-blue-400 mb-6 uppercase tracking-widest"><i class="fas fa-sliders mr-2"></i> Configurar Node</h3>
+                    <form id="manage-reseller-form" class="space-y-4">
+                        <input type="text" id="reseller-username" placeholder="ID do Revendedor" class="w-full p-4 rounded-lg outline-none">
+                        <input type="number" id="credit-amount" placeholder="Créditos" class="w-full p-4 rounded-lg outline-none">
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/5">
+                             <input type="checkbox" id="can-delete-keys" class="accent-cyan-500">
+                             <label for="can-delete-keys" class="text-[10px] text-gray-500 uppercase tracking-widest">Permitir Exclusão</label>
+                        </div>
+                        <input type="number" id="device-limit" placeholder="Limite de Devices" class="w-full p-4 rounded-lg outline-none">
+                        <button type="submit" class="w-full border border-blue-500/30 text-blue-400 py-4 rounded-lg hover:bg-blue-500 hover:text-white transition uppercase text-[10px] tracking-widest">Sincronizar Dados</button>
+                    </form>
+                </div>
+
+                <div class="bg-black/20 p-8 rounded-xl border border-white/5">
+                    <h3 class="text-[10px] text-purple-400 mb-6 uppercase tracking-widest"><i class="fas fa-plus mr-2"></i> Criar Novo Node</h3>
+                    <form id="new-reseller-form" class="space-y-4">
+                        <input type="text" id="new-reseller-username" placeholder="Novo Usuário" class="w-full p-4 rounded-lg outline-none">
+                        <input type="text" id="new-reseller-password" placeholder="Senha de Acesso" class="w-full p-4 rounded-lg outline-none">
+                        <input type="number" id="new-reseller-credits" value="10" class="w-full p-4 rounded-lg outline-none">
+                        <button type="submit" class="w-full border border-purple-500/30 text-purple-400 py-4 rounded-lg hover:bg-purple-500 hover:text-white transition uppercase text-[10px] tracking-widest">Registrar Sistema</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="resellers-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <footer class="mt-16 pt-8 border-t border-white/5 text-center">
+            <p class="text-[9px] text-gray-700 tracking-[6px] uppercase font-light">EUA Enterprise Engine • v2.5.0 Professional</p>
+        </footer>
+    </main>
+
+    <script>
+        /* MANTIDO TODO O SCRIPT ORIGINAL SEM ALTERAÇÕES DE LÓGICA */
+        const REALTIME_DB_URL = "https://chacal-d9526-default-rtdb.firebaseio.com";
+
+        const loginSection = document.getElementById("login-section");
+        const dashboardSection = document.getElementById("dashboard-section");
+        const loginForm = document.getElementById("login-form");
+        const logoutBtn = document.getElementById("logout-btn");
+        const userDisplay = document.getElementById("user-display");
+        const creditsDisplay = document.getElementById("credits-display");
+        const createKeyForm = document.getElementById("create-key-form");
+        const keysList = document.getElementById("keys-list");
+        const manageResellerForm = document.getElementById("manage-reseller-form");
+        const newResellerForm = document.getElementById("new-reseller-form");
+        const resellersList = document.getElementById("resellers-list");
+        
+        const keysTabBtn = document.getElementById("keys-tab-btn");
+        const manageTabBtn = document.getElementById("manage-tab-btn");
+        const keysTab = document.getElementById("keys-tab");
+        const manageTab = document.getElementById("manage-tab");
+        const apiDocsSection = document.getElementById("api-docs");
+
+        let currentUser = null;
+        let currentRole = null;
+        let currentCredits = 0;
+        let currentPermissions = {};
+
+        const deviceId = localStorage.getItem('deviceId') || Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('deviceId', deviceId);
+
+        loginForm.addEventListener("submit", async e => {
+            e.preventDefault();
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            if (username === "Eua" && password === "store") {
+                currentUser = username;
+                currentRole = "owner";
+                currentCredits = 0;
+                currentPermissions = { deleteKeys: true };
+                loginSection.classList.add("content-hidden");
+                dashboardSection.classList.remove("content-hidden");
+                userDisplay.textContent = `Bem-vindo, ${currentUser}!`;
+                creditsDisplay.textContent = "Dono";
+                manageTabBtn.classList.remove("content-hidden");
+                apiDocsSection.classList.remove("content-hidden");
+                fetchKeys();
+                return;
+            }
+
+            const res = await fetch(`${REALTIME_DB_URL}/resellers/${username}.json`);
+            const data = await res.json();
+
+            if (!data || data.password !== password) {
+                alert("Usuário ou senha inválidos");
+                return;
+            }
+
+            let devices = data.devices || [];
+            const deviceLimit = data.deviceLimit || 1;
+
+            if (!devices.includes(deviceId) && devices.length >= deviceLimit) {
+                alert(`Limite de dispositivos (${deviceLimit}) atingido.`);
+                return;
+            }
+
+            if (!devices.includes(deviceId)) {
+                devices.push(deviceId);
+            }
+
+            await fetch(`${REALTIME_DB_URL}/resellers/${username}.json`, { 
+                method: "PATCH", 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify({ devices: devices }) 
+            });
+
+            currentUser = username;
+            currentRole = "reseller";
+            currentCredits = data.credits || 0;
+            currentPermissions = data.permissions || {};
+            loginSection.classList.add("content-hidden");
+            dashboardSection.classList.remove("content-hidden");
+            userDisplay.textContent = `Olá, ${currentUser}!`;
+            creditsDisplay.textContent = `Créditos: ${currentCredits}`;
+            manageTabBtn.classList.add("content-hidden");
+            apiDocsSection.classList.add("content-hidden");
+            fetchKeys();
+        });
+
+        logoutBtn.addEventListener("click", async () => {
+            if (currentUser && currentRole !== 'owner') {
+                const res = await fetch(`${REALTIME_DB_URL}/resellers/${currentUser}.json`);
+                const data = await res.json();
+                let devices = data.devices || [];
+                devices = devices.filter(id => id !== deviceId);
+                await fetch(`${REALTIME_DB_URL}/resellers/${currentUser}.json`, { 
+                    method: "PATCH", 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify({ devices: devices }) 
+                });
+            }
+            location.reload();
+        });
+
+        createKeyForm.addEventListener("submit", async e => {
+            e.preventDefault();
+            if (currentRole === "reseller" && currentCredits <= 0) {
+                alert("Sem créditos!");
+                return;
+            }
+            const days = parseInt(document.getElementById("validity-days").value);
+            const key = "EUA-" + Math.random().toString(36).substr(2, 8).toUpperCase();
+            const expires = new Date();
+            expires.setDate(expires.getDate() + days);
+            const keyData = { key, reseller: currentUser, expiresAt: expires.toISOString(), deviceId: null };
+            
+            try {
+                await fetch(`${REALTIME_DB_URL}/keys.json`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(keyData) });
+                if (currentRole === "reseller") {
+                    currentCredits--;
+                    await fetch(`${REALTIME_DB_URL}/resellers/${currentUser}.json`, { method: "PATCH", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ credits: currentCredits }) });
+                    creditsDisplay.textContent = `Créditos: ${currentCredits}`;
+                }
+                alert(`Chave Gerada: ${key}`);
+                fetchKeys();
+            } catch (error) {
+                alert(`Erro: ${error.message}`);
+            }
+        });
+
+        async function fetchKeys() {
+            const res = await fetch(`${REALTIME_DB_URL}/keys.json`);
+            const data = await res.json();
+            const keys = data ? Object.entries(data).filter(([id, k]) => currentRole === "owner" || k.reseller === currentUser).map(([id, k]) => ({ id, ...k })) : [];
+            
+            keysList.innerHTML = keys.sort((a, b) => new Date(b.expiresAt) - new Date(a.expiresAt)).map(k => `
+                <div class="bg-white/[0.02] rounded-xl p-5 border border-white/5 hover:bg-white/[0.04] transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-sm font-mono text-cyan-400 tracking-tighter">${k.key}</h3>
+                        <div class="flex gap-3">
+                            <button onclick="resetKey('${k.id}')" class="text-gray-600 hover:text-blue-400 transition"><i class="fas fa-sync-alt text-[12px]"></i></button>
+                            ${(currentRole === 'owner' || currentPermissions.deleteKeys) ? 
+                            `<button onclick="deleteKey('${k.id}')" class="text-gray-600 hover:text-red-400 transition"><i class="fas fa-trash text-[12px]"></i></button>` : ''}
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="text-[9px] uppercase tracking-widest text-gray-500">Expira: ${new Date(k.expiresAt).toLocaleDateString()}</p>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-600 font-mono">UID: ${k.deviceId ? k.deviceId.substring(0,12) + '...' : 'WAITING_BIND'}</p>
+                    </div>
+                </div>
+            `).join("") || `<p class="col-span-full text-center text-gray-600 text-[10px] uppercase tracking-widest py-10">Nenhum registro encontrado</p>`;
+        }
+
+        async function fetchResellers() {
+            if (currentRole !== 'owner') return;
+            const res = await fetch(`${REALTIME_DB_URL}/resellers.json`);
+            const data = await res.json();
+            const resellers = data ? Object.entries(data).map(([username, r]) => ({ username, ...r })) : [];
+
+            resellersList.innerHTML = resellers.map(r => `
+                <div class="bg-white/[0.02] rounded-xl p-5 border border-white/5">
+                    <h3 class="text-xs text-white uppercase tracking-widest mb-3">${r.username}</h3>
+                    <div class="space-y-2 mb-4">
+                        <p class="text-[9px] text-gray-500 uppercase">Credits: <span class="text-cyan-400">${r.credits || 0}</span></p>
+                        <p class="text-[9px] text-gray-500 uppercase">Devices: ${r.deviceLimit || 1}</p>
+                    </div>
+                    <button onclick="fillResellerForm('${r.username}', ${r.credits || 0}, ${r.permissions && r.permissions.deleteKeys}, ${r.deviceLimit || 1})" class="w-full py-2 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 hover:bg-white/10 transition uppercase tracking-widest">Ajustar</button>
+                </div>
+            `).join("");
+        }
+
+        window.fillResellerForm = (username, credits, canDeleteKeys, deviceLimit) => {
+            document.getElementById("reseller-username").value = username;
+            document.getElementById("credit-amount").value = credits;
+            document.getElementById("can-delete-keys").checked = canDeleteKeys;
+            document.getElementById("device-limit").value = deviceLimit;
+        }
+
+        manageResellerForm.addEventListener("submit", async e => {
+            e.preventDefault();
+            const username = document.getElementById("reseller-username").value.trim();
+            const updatedData = {
+                credits: parseInt(document.getElementById("credit-amount").value),
+                permissions: { deleteKeys: document.getElementById("can-delete-keys").checked },
+                deviceLimit: parseInt(document.getElementById("device-limit").value)
+            };
+            await fetch(`${REALTIME_DB_URL}/resellers/${username}.json`, { method: "PATCH", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updatedData) });
+            alert("Node atualizado!");
+            fetchResellers();
+        });
+
+        newResellerForm.addEventListener("submit", async e => {
+            e.preventDefault();
+            const username = document.getElementById("new-reseller-username").value.trim();
+            const newResellerData = {
+                username,
+                password: document.getElementById("new-reseller-password").value.trim(),
+                credits: parseInt(document.getElementById("new-reseller-credits").value),
+                permissions: { deleteKeys: false },
+                deviceLimit: 1,
+                devices: []
+            };
+            await fetch(`${REALTIME_DB_URL}/resellers/${username}.json`, { method: "PUT", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newResellerData) });
+            alert("Sistema registrado!");
+            newResellerForm.reset();
+            fetchResellers();
+        });
+
+        window.resetKey = async (keyId) => {
+            if (!confirm("Resetar HASH?")) return;
+            const res = await fetch(`${REALTIME_DB_URL}/keys/${keyId}.json`);
+            const keyData = await res.json();
+            keyData.deviceId = null;
+            await fetch(`${REALTIME_DB_URL}/keys/${keyId}.json`, { method: "PUT", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(keyData) });
+            fetchKeys();
+        }
+
+        window.deleteKey = async (keyId) => {
+            if (!confirm("Apagar chave?")) return;
+            await fetch(`${REALTIME_DB_URL}/keys/${keyId}.json`, { method: "DELETE" });
+            fetchKeys();
+        }
+
+        keysTabBtn.addEventListener("click", () => {
+            keysTabBtn.classList.add("active"); manageTabBtn.classList.remove("active");
+            keysTab.classList.remove("content-hidden"); manageTab.classList.add("content-hidden");
+            fetchKeys();
+        });
+
+        manageTabBtn.addEventListener("click", () => {
+            manageTabBtn.classList.add("active"); keysTabBtn.classList.remove("active");
+            manageTab.classList.remove("content-hidden"); keysTab.classList.add("content-hidden");
+            fetchResellers();
+        });
+    </script>
+</body>
+</html>
